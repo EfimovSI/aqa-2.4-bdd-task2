@@ -28,13 +28,8 @@ public class TemplateSteps {
 
     @Когда("пользователь переводит {string} рублей с карты с номером {string} на свою {string} карту с главной страницы;")
     public void depositCardFromAnother(String amount, String fromCardNumber, String cardPositionNumber) {
-        if (cardPositionNumber == "1") {
-            transactionPage = dashboardPage.firstDepositButtonClick();
+            transactionPage = dashboardPage.depositButtonClick(cardPositionNumber);
             dashboardPage = transactionPage.validTransfer(amount, fromCardNumber);
-        } else if (cardPositionNumber == "2") {
-            transactionPage = dashboardPage.secondDepositButtonClick();
-            dashboardPage = transactionPage.validTransfer(amount, fromCardNumber);
-        }
     }
 
     @Тогда("баланс его {string} карты из списка на главной странице должен стать {string} рублей")
